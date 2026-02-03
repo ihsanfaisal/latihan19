@@ -1,38 +1,36 @@
-  
-  
 // fungsi format rupiah 1.000.000
 function rupiah(angka) {
-  return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 }
 
 function process() {
-   let JUMLAH_BARANG = Number(prompt("Masukan total belanja barang")) 
-  
-  let total = 0;
-  let output = "";
-  
+  let JUMLAH_BARANG = Number(prompt("Masukan total belanja barang"))
+
+  let total = 0
+  let output = ""
+
   // LOOP INPUT HARGA BARANG
   for (let i = 1; i <= JUMLAH_BARANG; i++) {
-    let harga = Number(prompt("Masukkan harga barang ke-" + i));
-    total += harga;
-    
-    output += "Barang ke-" + i + ": Rp " + rupiah(harga) + "<br>";
+    let harga = Number(prompt("Masukkan harga barang ke-" + i))
+    total += harga
+
+    output += "Barang ke-" + i + ": Rp " + rupiah(harga) + "<br>"
   }
-  
+
   // HITUNG DISKON
-  let diskon = 0;
+  let diskon = 0
   if (total > 500000) {
-    diskon = total * 0.2;
+    diskon = total * 0.2
   }
-  
-  let setelahDiskon = total - diskon;
-  
+
+  let setelahDiskon = total - diskon
+
   // HITUNG PPN
-  let ppn = setelahDiskon * 0.1;
-  
+  let ppn = setelahDiskon * 0.1
+
   // TOTAL BAYAR
-  let totalBayar = setelahDiskon + ppn;
-  
+  let totalBayar = setelahDiskon + ppn
+
   // OUTPUT RINGKASAN
   output += `
     <div class="ringkasan">
@@ -41,7 +39,7 @@ function process() {
       PPN 10%: Rp ${rupiah(ppn)}<br>
       Total bayar: Rp ${rupiah(totalBayar)}
     </div>
-  `;
-  
-  document.getElementById("hasil").innerHTML = output;
+  `
+
+  document.getElementById("hasil").innerHTML = output
 }
